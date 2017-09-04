@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Move_Prot : MonoBehaviour
 {
-    public int playerSpeed = 10;
+    public int playerSpeed = 5;
 
     public bool facingRight = false;
 
@@ -25,24 +25,28 @@ public class Player_Move_Prot : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical");
 
-        if (moveX < 0.0f && facingRight == false)
+        if (moveX < 0.0f)
         {
-            FlipPlayerX();
+            //FlipPlayerX();
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-1*playerSpeed, 0.0f);
         }
-        else if (moveX > 0.0f && facingRight == true)
+        else if (moveX > 0.0f)
         {
-            FlipPlayerX();
+            //FlipPlayerX();
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(playerSpeed, 0.0f);
         }
-        else if (moveY < 0.0f && facingUp == false)
+        if (moveY < 0.0f)
         {
-            FlipPlayerY();
+            //FlipPlayerY();
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1*playerSpeed);
         }
-        else if (moveY > 0.0f && facingUp == true)
+        else if (moveY > 0.0f)
         {
-            FlipPlayerY();
+            //FlipPlayerY();
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, playerSpeed);
         }
 
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (moveX * playerSpeed, moveY * playerSpeed);
+        
     }
 
     void FlipPlayerX()
