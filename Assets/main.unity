@@ -2470,5 +2470,11 @@ MonoBehaviour:
   playerSpeed: 5
   facingRight: 0
   facingUp: 0
+  facingDown: 0
+  facingLeft: 0
   moveX: 0
   moveY: 0
+  spriteRight: {fileID: 21300018, guid: f74af60e25d07a6459046f1d0bf52586, type: 3}
+  spriteLeft: {fileID: 21300028, guid: f74af60e25d07a6459046f1d0bf52586, type: 3}
+  spriteUp: {fileID: 21300058, guid: f74af60e25d07a6459046f1d0bf52586, type: 3}
+  spriteDown: {fileID: 21300008, guid: f74af60e25d07a6459046f1d0bf52586, type: 3}
