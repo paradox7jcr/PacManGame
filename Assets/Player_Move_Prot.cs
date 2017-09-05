@@ -26,7 +26,6 @@ public class Player_Move_Prot : MonoBehaviour
     void Update ()
 	{
         PlayerMove();
-        ChangePlayerSprite();
     }
 
     void Start()
@@ -43,69 +42,50 @@ public class Player_Move_Prot : MonoBehaviour
 
         if (moveX < 0.0f)
         {
-            TurnPlayer(1);
+            TurnPlayer("left");
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-1*playerSpeed, 0.0f);
         }
         else if (moveX > 0.0f)
         {
-            TurnPlayer(0);
+            TurnPlayer("right");
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(playerSpeed, 0.0f);
         }
         if (moveY < 0.0f)
         {
-            TurnPlayer(2);
+            TurnPlayer("down");
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1*playerSpeed);
         }
         else if (moveY > 0.0f)
         {
-            TurnPlayer(3);
+            TurnPlayer("up");
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, playerSpeed);
         }
 
         
     }
 
-void ChangePlayerSprite()
+    void TurnPlayer(string direction)
     {
-        if (facingRight)
-           spriteRenderer.sprite = spriteRight;
-        else if(facingLeft)
-            spriteRenderer.sprite = spriteLeft;
-        else if (facingUp)
-            spriteRenderer.sprite = spriteUp;
-        else
-            spriteRenderer.sprite = spriteDown;
-    }
+        this.facingRight = false;
+        this.facingLeft = false;
+        this.facingUp = false;
+        this.facingDown = false;
 
-    void TurnPlayer(int x)
-    {
-        if (x == 0)
+        switch (direction)
         {
-            facingRight = true;
-            facingLeft = false;
-            facingDown = false;
-            facingUp = false;
-        }
-        else if (x == 1)
-        {
-            facingRight = false;
-            facingLeft = true;
-            facingDown = false;
-            facingUp = false;
-        }
-        else if (x == 2)
-        {
-            facingRight = false;
-            facingLeft = false;
-            facingDown = true;
-            facingUp = false;
-        }
-        else
-        {
-            facingRight = false;
-            facingLeft = false;
-            facingDown = false;
-            facingUp = true;
+            case "left":
+                spriteRenderer.sprite = spriteLeft;
+                break;
+            case "right":
+                spriteRenderer.sprite = spriteRight;
+                break;
+            case "down":
+                spriteRenderer.sprite = spriteDown;
+                break;
+            case "up":
+                spriteRenderer.sprite = spriteUp;
+                break;
+            default: break;
         }
     }
 }
